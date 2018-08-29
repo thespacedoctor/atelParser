@@ -105,9 +105,6 @@ class download():
             - ``number`` -- the number of the latest ATel
 
         **Usage:**
-            ..  todo::
-
-                - update package tutorial with command-line tool info if needed
 
             .. code-block:: python 
 
@@ -117,7 +114,6 @@ class download():
                     settings=settings
                 )
                 latestNumber = atels.get_latest_atel_number()
-
         """
         self.log.debug('starting the ``get_latest_atel_number`` method')
 
@@ -141,10 +137,49 @@ class download():
 
         # FIND HIGHEST ATEL NUMBER
         atelNumbers = sorted(atelNumbers)
-        number = atelNumbers[-1]
+        number = int(atelNumbers[-1])
 
         self.log.debug('completed the ``get_latest_atel_number`` method')
         return number
+
+    def get_list_of_atels_still_to_download(
+            self):
+        """*get list of atels still to download by determining which ATels have been downloaded and diffing this against the latest ATel number*
+
+        **Return:**
+            - ``atelNumbersToDownload`` -- a list of the ATel numbers that need downloaded
+
+        **Usage:**
+
+            .. code-block:: python 
+
+                from atelParser import download
+                atels = download(
+                    log=log,
+                    settings=settings
+                )
+                atelsToDownload = atels.get_list_of_atels_still_to_download() 
+        """
+        self.log.debug(
+            'starting the ``get_list_of_atels_still_to_download`` method')
+
+        basePath = self.settings["atel-directory"]
+
+        atelDownloaded = []
+        atelDownloaded[:] = [int(d.replace(".html", "")) for d in os.listdir(basePath) if os.path.isfile(
+            os.path.join(basePath, d)) and ".html" in d]
+
+        latestNumber = self.get_latest_atel_number()
+
+        allAtels = range(1, latestNumber, 1)
+        allAtels = range(max(atelDownloaded), latestNumber, 1)
+        atelNumbersToDownload = []
+        atelNumbersToDownload[:] = [
+            m for m in allAtels if m not in atelDownloaded]
+
+        self.log.debug(
+            'completed the ``get_list_of_atels_still_to_download`` method')
+        return atelNumbersToDownload
 
     # use the tab-trigger below for new method
     # xt-class-method
