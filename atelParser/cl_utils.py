@@ -4,11 +4,13 @@
 Documentation for atelParser can be found here: http://atelParser.readthedocs.org/en/stable
 
 Usage:
-    atelParser init
-    atelParser [-s <pathToSettingsFile>]
+    atel init
+    atel count [-s <pathToSettingsFile>]
 
 Options:
     init                  setup the atelParser settings file for the first time
+    count                 report the total number of atels reported so far
+
     -h, --help            show this help message
     -v, --version         show version
     -s, --settings        the settings file
@@ -116,6 +118,18 @@ def main(arguments=None):
         except:
             pass
         return
+
+    if count:
+        from atelParser import download
+        atels = download(
+            log=log,
+            settings=settings
+        )
+        latestNumber = atels.get_latest_atel_number()
+        from datetime import datetime, date, time
+        now = datetime.now()
+        now = now.strftime("%Y/%m/%d %H:%M:%Ss")
+        print "%(latestNumber)s ATels have been reported as of %(now)s" % locals()
 
     # CALL FUNCTIONS/OBJECTS
 

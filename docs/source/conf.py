@@ -13,6 +13,7 @@
 
 import sys
 import os
+from atelParser import cl_utils
 
 # -- Allow Markdown -----------------------------------------------------
 # source_suffix = ['.rst', '.md']
@@ -263,7 +264,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'atelParser', u'atelParser Documentation',
-     u'Dave Young', 'atelParser', 'Download Astronomers' Telegrams and parse them to find transient names and coordinates',
+     u'Dave Young', 'atelParser', "Download Astronomers' Telegrams and parse them to find transient names and coordinates",
      'Miscellaneous'),
 ]
 

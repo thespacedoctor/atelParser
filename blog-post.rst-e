@@ -1,0 +1,90 @@
+atelParser 
+=========================
+
+.. image:: https://readthedocs.org/projects/atelParser/badge/
+    :target: http://atelParser.readthedocs.io/en/latest/?badge
+    :alt: Documentation Status
+
+.. image:: https://cdn.rawgit.com/thespacedoctor/atelParser/master/coverage.svg
+    :target: https://cdn.rawgit.com/thespacedoctor/atelParser/master/htmlcov/index.html
+    :alt: Coverage Status
+
+*A python package and command-line tools for Download Astronomers' Telegrams and parse them to find transient names and coordinates*.
+
+
+
+.. include:: /classes_and_functions.rst
+
+Command-Line Usage
+==================
+
+.. code-block:: bash 
+   
+    
+    Documentation for atelParser can be found here: http://atelParser.readthedocs.org/en/stable
+    
+    Usage:
+        atel init
+        atel count [-s <pathToSettingsFile>]
+    
+    Options:
+        init                  setup the atelParser settings file for the first time
+        count                 report the total number of atels reported so far
+    
+        -h, --help            show this help message
+        -v, --version         show version
+        -s, --settings        the settings file
+    
+
+Installation
+============
+
+The easiest way to install atelParser is to use ``pip``:
+
+.. code:: bash
+
+    pip install atelParser
+
+Or you can clone the `github repo <https://github.com/thespacedoctor/atelParser>`__ and install from a local version of the code:
+
+.. code:: bash
+
+    git clone git@github.com:thespacedoctor/atelParser.git
+    cd atelParser
+    python setup.py install
+
+To upgrade to the latest version of atelParser use the command:
+
+.. code:: bash
+
+    pip install atelParser --upgrade
+
+
+Documentation
+=============
+
+Documentation for atelParser is hosted by `Read the Docs <http://atelParser.readthedocs.org/en/stable/>`__ (last `stable version <http://atelParser.readthedocs.org/en/stable/>`__ and `latest version <http://atelParser.readthedocs.org/en/latest/>`__).
+
+Command-Line Tutorial
+=====================
+
+Before you begin using atelParser you will need to populate some custom settings within the atelParser settings file.
+
+To setup the default settings file at ``~/.config/atelParser/atelParser.yaml`` run the command:
+
+.. code-block:: bash 
+    
+    > atel init
+
+This should create and open the settings file; follow the instructions in the file to populate the missing settings values (usually given an ``XXX`` placeholder). 
+
+Report the Latest ATel Count
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To report the latest ATel count run the command:
+
+.. code-block:: bash
+
+    > atel count
+    11994 ATels have been reported as of 2018/08/29 13:31:02s
+
