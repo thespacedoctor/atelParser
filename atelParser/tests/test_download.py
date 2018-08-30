@@ -69,8 +69,8 @@ class test_download(unittest.TestCase):
             log=log,
             settings=settings
         )
-        atelsToDownload = atels.get_list_of_atels_still_to_download()
-        print atelsToDownload
+        atelsToDownload = atels._get_list_of_atels_still_to_download()
+        atels.download_list_of_atels(atelsToDownload)
 
     def test_download_function_exception(self):
 

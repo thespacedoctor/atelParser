@@ -16,6 +16,9 @@ os.environ['TERM'] = 'vt100'
 from fundamentals import tools
 import requests
 import re
+import random
+from time import sleep
+import codecs
 
 
 class download():
@@ -119,9 +122,11 @@ class download():
 
         # DOWNLOAD THE RSS FEED FOR ATELS
         try:
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
             response = requests.get(
                 url="http://www.astronomerstelegram.org/?rss",
-                params={},
+                headers=headers,
             )
             content = response.content
             status_code = response.status_code
@@ -142,7 +147,7 @@ class download():
         self.log.debug('completed the ``get_latest_atel_number`` method')
         return number
 
-    def get_list_of_atels_still_to_download(
+    def _get_list_of_atels_still_to_download(
             self):
         """*get list of atels still to download by determining which ATels have been downloaded and diffing this against the latest ATel number*
 
@@ -158,10 +163,10 @@ class download():
                     log=log,
                     settings=settings
                 )
-                atelsToDownload = atels.get_list_of_atels_still_to_download() 
+                atelsToDownload = atels._get_list_of_atels_still_to_download() 
         """
         self.log.debug(
-            'starting the ``get_list_of_atels_still_to_download`` method')
+            'starting the ``_get_list_of_atels_still_to_download`` method')
 
         basePath = self.settings["atel-directory"]
 
@@ -172,14 +177,66 @@ class download():
         latestNumber = self.get_latest_atel_number()
 
         allAtels = range(1, latestNumber, 1)
-        allAtels = range(max(atelDownloaded), latestNumber, 1)
+        # allAtels = range(max(atelDownloaded), latestNumber, 1)
         atelNumbersToDownload = []
         atelNumbersToDownload[:] = [
             m for m in allAtels if m not in atelDownloaded]
 
         self.log.debug(
-            'completed the ``get_list_of_atels_still_to_download`` method')
+            'completed the ``_get_list_of_atels_still_to_download`` method')
         return atelNumbersToDownload
+
+    def download_list_of_atels(
+            self,
+            atelNumbers):
+        """*download the HTML files of all the missing ATels*
+
+        **Key Arguments:**
+            - ``atelNumbers`` -- the list of ATel numbers to download
+
+        **Return:**
+            - None
+
+        **Usage:**
+            ..  todo::
+
+                - add usage info
+                - create a sublime snippet for usage
+                - write a command-line tool for this method
+                - update package tutorial with command-line tool info if needed
+
+            .. code-block:: python 
+
+                usage code 
+
+        """
+        self.log.debug('starting the ``download_list_of_atels`` method')
+
+        for atel in atelNumbers:
+            wait = random.randint(1, 5)
+            print "Waiting for a randomly selected %(wait)ss before next download" % locals()
+            sleep(wait)
+            url = 'http://www.astronomerstelegram.org/?read=%(atel)s' % locals(
+            )
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+            response = requests.get(url, headers=headers)
+            pathToWriteFile = self.settings[
+                "atel-directory"] + "/%(atel)0.8d.html" % locals()
+            try:
+                self.log.debug("attempting to open the file %s" %
+                               (pathToWriteFile,))
+                writeFile = codecs.open(
+                    pathToWriteFile, encoding='utf-8', mode='w')
+            except IOError, e:
+                message = 'could not open the file %s' % (pathToWriteFile,)
+                self.log.critical(message)
+                raise IOError(message)
+            writeFile.write(response.content.decode("utf8"))
+            writeFile.close()
+
+        self.log.debug('completed the ``download_list_of_atels`` method')
+        return None
 
     # use the tab-trigger below for new method
     # xt-class-method
