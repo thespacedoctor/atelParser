@@ -176,7 +176,7 @@ class download():
 
         latestNumber = self.get_latest_atel_number()
 
-        allAtels = range(1, latestNumber, 1)
+        allAtels = range(1, latestNumber + 1, 1)
         # allAtels = range(max(atelDownloaded), latestNumber, 1)
         atelNumbersToDownload = []
         atelNumbersToDownload[:] = [
@@ -198,17 +198,18 @@ class download():
             - None
 
         **Usage:**
-            ..  todo::
 
-                - add usage info
-                - create a sublime snippet for usage
-                - write a command-line tool for this method
-                - update package tutorial with command-line tool info if needed
+            To download new and missing ATel to your ``atel-directory`` use this code:
 
             .. code-block:: python 
 
-                usage code 
-
+                from atelParser import download
+                atels = download(
+                    log=log,
+                    settings=settings
+                )
+                atelsToDownload = atels._get_list_of_atels_still_to_download()
+                atels.download_list_of_atels(atelsToDownload)
         """
         self.log.debug('starting the ``download_list_of_atels`` method')
 

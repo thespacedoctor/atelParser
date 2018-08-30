@@ -6,10 +6,12 @@ Documentation for atelParser can be found here: http://atelParser.readthedocs.or
 Usage:
     atel init
     atel count [-s <pathToSettingsFile>]
+    atel download [-s <pathToSettingsFile>]
 
 Options:
     init                  setup the atelParser settings file for the first time
     count                 report the total number of atels reported so far
+    download              download new and remaining ATel to the atel-directory stated in settings file
 
     -h, --help            show this help message
     -v, --version         show version
@@ -118,6 +120,16 @@ def main(arguments=None):
         except:
             pass
         return
+
+    if download:
+        from atelParser import download
+        atels = download(
+            log=log,
+            settings=settings
+        )
+        atelsToDownload = atels._get_list_of_atels_still_to_download()
+        print atelsToDownload
+        atels.download_list_of_atels(atelsToDownload)
 
     if count:
         from atelParser import download
