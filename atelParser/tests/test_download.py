@@ -53,7 +53,7 @@ if not os.path.exists(pathToOutputDir):
 
 class test_download(unittest.TestCase):
 
-    def test_download_function(self):
+    def test_get_latest_atel_number_function(self):
 
         from atelParser import download
         atels = download(
@@ -61,6 +61,16 @@ class test_download(unittest.TestCase):
             settings=settings
         )
         latestNumber = atels.get_latest_atel_number()
+
+    def test_get_list_of_atels_still_to_download_function(self):
+
+        from atelParser import download
+        atels = download(
+            log=log,
+            settings=settings
+        )
+        atelsToDownload = atels._get_list_of_atels_still_to_download()
+        atels.download_list_of_atels(atelsToDownload)
 
     def test_download_function_exception(self):
 

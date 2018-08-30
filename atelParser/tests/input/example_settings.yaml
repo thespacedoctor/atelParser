@@ -1,4 +1,8 @@
 version: 1
+
+atel-directory: /Users/Dave/git_repos/atel-archive/html
+
+
 database settings:
     db: dryx_unit_testing
     host: localhost
