@@ -128,7 +128,6 @@ def main(arguments=None):
             settings=settings
         )
         atelsToDownload = atels._get_list_of_atels_still_to_download()
-        print atelsToDownload
         atels.download_list_of_atels(atelsToDownload)
 
     if count:

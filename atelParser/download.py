@@ -215,7 +215,7 @@ class download():
 
         for atel in atelNumbers:
             wait = random.randint(1, 180)
-            print "Waiting for a randomly selected %(wait)ss before next download" % locals()
+            print "Waiting for a randomly selected %(wait)ss before downloading ATel #%(atel)s" % locals()
             sleep(wait)
             url = 'http://www.astronomerstelegram.org/?read=%(atel)s' % locals(
             )
