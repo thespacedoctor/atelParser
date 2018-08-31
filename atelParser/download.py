@@ -35,21 +35,15 @@ class download():
 
         To initiate a download object, use the following:
 
-        .. todo::
-
-            - add usage info
-            - create a sublime snippet for usage
-            - create cl-util for this class
-            - add a tutorial about ``download`` to documentation
-            - create a blog post about what ``download`` does
-
         .. code-block:: python 
 
-            usage code   
+            from atelParser import download
+            atels = download(
+                log=log,
+                settings=settings
+            )  
     """
     # Initialisation
-    # 1. @flagged: what are the unique attrributes for each object? Add them
-    # to __init__
 
     def __init__(
             self,
@@ -60,45 +54,8 @@ class download():
         self.log = log
         log.debug("instansiating a new 'download' object")
         self.settings = settings
-        # xt-self-arg-tmpx
-
-        # 2. @flagged: what are the default attrributes each object could have? Add them to variable attribute set here
-        # Variable Data Atrributes
-
-        # 3. @flagged: what variable attrributes need overriden in any baseclass(es) used
-        # Override Variable Data Atrributes
-
-        # Initial Actions
 
         return None
-
-    # 4. @flagged: what actions does each object have to be able to perform? Add them here
-    # Method Attributes
-    def get(self):
-        """
-        *get the download object*
-
-        **Return:**
-            - ``download``
-
-        **Usage:**
-        .. todo::
-
-            - add usage info
-            - create a sublime snippet for usage
-            - create cl-util for this method
-            - update the package tutorial if needed
-
-        .. code-block:: python 
-
-            usage code 
-        """
-        self.log.debug('starting the ``get`` method')
-
-        download = None
-
-        self.log.debug('completed the ``get`` method')
-        return download
 
     def get_latest_atel_number(
             self):
@@ -177,7 +134,6 @@ class download():
         latestNumber = self.get_latest_atel_number()
 
         allAtels = range(1, latestNumber + 1, 1)
-        # allAtels = range(max(atelDownloaded), latestNumber, 1)
         atelNumbersToDownload = []
         atelNumbersToDownload[:] = [
             m for m in allAtels if m not in atelDownloaded]
@@ -238,10 +194,3 @@ class download():
 
         self.log.debug('completed the ``download_list_of_atels`` method')
         return None
-
-    # use the tab-trigger below for new method
-    # xt-class-method
-
-    # 5. @flagged: what actions of the base class(es) need ammending? ammend them here
-    # Override Method Attributes
-    # method-override-tmpx

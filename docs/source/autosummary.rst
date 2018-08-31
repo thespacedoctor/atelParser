@@ -17,5 +17,6 @@ Classes
    :toctree: _autosummary
    :nosignatures:
 
-   atelParser.download 
+   atelParser.download
+   atelParser.mysql 
 

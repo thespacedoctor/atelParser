@@ -12,7 +12,8 @@ def readme():
 install_requires = [
     'pyyaml',
     'atelParser',
-    'fundamentals'
+    'fundamentals',
+    'astrocalc'
 ]
 
 # READ THE DOCS SERVERS
