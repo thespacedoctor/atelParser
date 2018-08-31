@@ -3,7 +3,7 @@ import nose2
 import shutil
 import unittest
 import yaml
-from atelParser import download, cl_utils
+from atelParser import mysql, cl_utils
 from atelParser.utKit import utKit
 
 from fundamentals import tools
@@ -51,32 +51,31 @@ if not os.path.exists(pathToOutputDir):
 # xt-setup-unit-testing-files-and-folders
 
 
-class test_download(unittest.TestCase):
+class test_mysql(unittest.TestCase):
 
-    def test_get_latest_atel_number_function(self):
+    def test_atels_to_database_function(self):
 
-        from atelParser import download
-        atels = download(
+        from atelParser import mysql
+        parser = mysql(
             log=log,
             settings=settings
         )
-        latestNumber = atels.get_latest_atel_number()
+        parser.atels_to_database()
 
-    def test_get_list_of_atels_still_to_download_function(self):
+    def test_parse_atels_function(self):
 
-        from atelParser import download
-        atels = download(
+        from atelParser import mysql
+        parser = mysql(
             log=log,
             settings=settings
         )
-        atelsToDownload = atels._get_list_of_atels_still_to_download()
-        atels.download_list_of_atels(atelsToDownload)
+        parser.parse_atels()
 
-    def test_download_function_exception(self):
+    def test_mysql_function_exception(self):
 
-        from atelParser import download
+        from atelParser import mysql
         try:
-            this = download(
+            this = mysql(
                 log=log,
                 settings=settings,
                 fakeKey="break the code"

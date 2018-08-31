@@ -4,7 +4,8 @@
 .. autosummary::
    :nosignatures:
 
-   atelParser.download 
+   atelParser.download
+   atelParser.mysql 
 
 **Functions**
 

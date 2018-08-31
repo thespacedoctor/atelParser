@@ -23,5 +23,6 @@ Submodules
 
    atelParser.cl_utils
    atelParser.download
+   atelParser.mysql
    atelParser.utKit
 
