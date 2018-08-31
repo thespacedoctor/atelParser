@@ -1,9 +1,9 @@
-atelParser.download (*class*)
-=============================
+atelParser.mysql (*class*)
+==========================
 
 .. currentmodule:: atelParser
 
-.. autoclass:: download
+.. autoclass:: mysql
    :members:
    :private-members:
    :show-inheritance:
@@ -20,11 +20,11 @@ atelParser.download (*class*)
         
    
         
-            ~download.download_list_of_atels
+            ~mysql.atels_to_database
        
    
         
-            ~download.get_latest_atel_number
+            ~mysql.parse_atels
        
    
    
@@ -33,10 +33,6 @@ atelParser.download (*class*)
        
    
        
-   
-       
-            ~download._get_list_of_atels_still_to_download
-        
    
        
    

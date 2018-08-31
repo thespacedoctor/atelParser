@@ -37,3 +37,18 @@ To kick off the download run the command:
     atel download
 
 This will download the HTML pages for all new/missing ATels to your ``atel-directory``.
+
+Parsing Names and Coordiantes from ATels
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To read new contents from the ``atel_fullcontent`` table from the database and parse out all transient names and coordinates into two separate database tables (``atel_names`` & ``atel_coordinates``), run the command:
+
+.. code-block:: bash 
+    
+    atel parse
+
+Or to re-parse *ALL* content from the ``atel_fullcontent`` table run:
+
+.. code-block:: bash 
+    
+    atel -r parse

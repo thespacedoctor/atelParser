@@ -37,21 +37,15 @@ class mysql():
 
         To initiate a mysql object, use the following:
 
-        .. todo::
-
-            - add usage info
-            - create a sublime snippet for usage
-            - create cl-util for this class
-            - add a tutorial about ``mysql`` to documentation
-            - create a blog post about what ``mysql`` does
-
         .. code-block:: python 
 
-            usage code   
+            from atelParser import mysql
+            parser = mysql(
+                log=log,
+                settings=settings
+            ) 
     """
     # Initialisation
-    # 1. @flagged: what are the unique attrributes for each object? Add them
-    # to __init__
 
     def __init__(
             self,
@@ -65,14 +59,6 @@ class mysql():
         self.settings = settings
         self.reParse = reParse
 
-        # xt-self-arg-tmpx
-
-        # 2. @flagged: what are the default attrributes each object could have? Add them to variable attribute set here
-        # Variable Data Atrributes
-
-        # 3. @flagged: what variable attrributes need overriden in any baseclass(es) used
-        # Override Variable Data Atrributes
-
         # SETUP ALL DATABASE CONNECTION
         self.dbSettings = settings["database settings"]
         self.dbConn = database(
@@ -81,34 +67,6 @@ class mysql():
         ).connect()
 
         return None
-
-    # 4. @flagged: what actions does each object have to be able to perform? Add them here
-    # Method Attributes
-    def get(self):
-        """
-        *get the mysql object*
-
-        **Return:**
-            - ``mysql``
-
-        **Usage:**
-        .. todo::
-
-            - add usage info
-            - create a sublime snippet for usage
-            - create cl-util for this method
-            - update the package tutorial if needed
-
-        .. code-block:: python 
-
-            usage code 
-        """
-        self.log.debug('starting the ``get`` method')
-
-        mysql = None
-
-        self.log.debug('completed the ``get`` method')
-        return mysql
 
     def atels_to_database(
             self):
@@ -325,7 +283,6 @@ class mysql():
                     settings=settings
                 )
                 parser.parse_atels()
-
         """
         self.log.debug('starting the ``parse_atels`` method')
 
@@ -1044,13 +1001,6 @@ class mysql():
 
         self.log.debug('completed the ``parse_atels`` method')
         return None
-
-    # use the tab-trigger below for new method
-    # xt-class-method
-
-    # 5. @flagged: what actions of the base class(es) need ammending? ammend them here
-    # Override Method Attributes
-    # method-override-tmpx
 
 
 def clean_supernova_name(log, snName):
