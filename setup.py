@@ -13,7 +13,8 @@ install_requires = [
     'pyyaml',
     'atelParser',
     'fundamentals',
-    'astrocalc'
+    'astrocalc',
+    'HMpTy'
 ]
 
 # READ THE DOCS SERVERS
@@ -26,6 +27,7 @@ if exists:
             install_requires.remove(e)
         except:
             pass
+
 
 setup(name="atelParser",
       version=__version__,
