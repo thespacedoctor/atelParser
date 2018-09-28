@@ -71,6 +71,15 @@ class test_mysql(unittest.TestCase):
         )
         parser.parse_atels()
 
+    def test_update_htm_function(self):
+
+        from atelParser import mysql
+        parser = mysql(
+            log=log,
+            settings=settings
+        )
+        parser.populate_htm_columns()
+
     def test_mysql_function_exception(self):
 
         from atelParser import mysql

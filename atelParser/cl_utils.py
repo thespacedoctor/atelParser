@@ -155,6 +155,7 @@ def main(arguments=None):
         )
         parser.atels_to_database()
         parser.parse_atels()
+        parser.populate_htm_columns()
 
     # CALL FUNCTIONS/OBJECTS
 

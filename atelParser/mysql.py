@@ -1002,6 +1002,38 @@ class mysql():
         self.log.debug('completed the ``parse_atels`` method')
         return None
 
+    def populate_htm_columns(
+            self):
+        """*populate htm columns in the atel_coordinates table*
+
+        **Usage:**
+
+            To add the HTM columns (levels 10, 13, 16) to the atel_coordinates database add this to your code:
+
+            .. code-block:: python 
+
+                from atelParser import mysql
+                parser = mysql(
+                    log=log,
+                    settings=settings
+                )
+                parser.populate_htm_columns()
+        """
+        self.log.debug('starting the ``populate_htm_columns`` method')
+
+        from HMpTy.mysql import add_htm_ids_to_mysql_database_table
+        add_htm_ids_to_mysql_database_table(
+            raColName="raDeg",
+            declColName="decDeg",
+            tableName="atel_coordinates",
+            dbConn=self.dbConn,
+            log=self.log,
+            primaryIdColumnName="primaryId"
+        )
+
+        self.log.debug('completed the ``populate_htm_columns`` method')
+        return None
+
 
 def clean_supernova_name(log, snName):
     """
@@ -1041,3 +1073,7 @@ def clean_supernova_name(log, snName):
     snName = regex.sub('SDSS', snName)
 
     return snName
+
+
+# use the tab-trigger below for new method
+# xt-class-method
