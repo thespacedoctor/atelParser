@@ -1008,7 +1008,7 @@ class mysql():
 
         **Usage:**
 
-            To add the HTM columns (levels 10, 13, 16) to the atel_coordinates database add this to your code:
+            To add the HTM columns (levels 10, 13 & 16) to the atel_coordinates database add this to your code:
 
             .. code-block:: python 
 
