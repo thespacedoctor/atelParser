@@ -143,7 +143,7 @@ class mysql():
             except:
                 # QUIT WHENEVER A TITLE IS NOT FOUND IN THE HTML DOC (i.e. ATEL
                 # DOES NOT EXIST YET)
-                return
+                continue
                 title = None
             elementDict['title'] = title
 
