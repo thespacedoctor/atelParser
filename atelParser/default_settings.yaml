@@ -3,9 +3,9 @@ version: 1
 atel-directory: /Users/Dave/git_repos/atel-archive/html
 
 database settings:
-    db: dryx_unit_testing
+    db: unit_tests
     host: localhost
-    user: unittesting
+    user: utuser
     password: utpass
     loginPath: unittesting
     tunnel: False

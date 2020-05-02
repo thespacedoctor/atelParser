@@ -5,8 +5,8 @@ atelParser
     :target: http://atelParser.readthedocs.io/en/latest/?badge
     :alt: Documentation Status
 
-.. image:: https://cdn.rawgit.com/thespacedoctor/atelParser/master/coverage.svg
-    :target: https://cdn.rawgit.com/thespacedoctor/atelParser/master/htmlcov/index.html
+.. image:: https://cdn.jsdelivr.net/gh/thespacedoctor/atelParser@master/coverage.svg
+    :target: https://cdn.jsdelivr.net/gh/thespacedoctor/atelParser@master/htmlcov/index.html
     :alt: Coverage Status
 
 *A python package and command-line tools for Download Astronomers' Telegrams and parse them to find transient names and coordinates*.
