@@ -16,7 +16,8 @@ install_requires = [
     'astrocalc',
     'HMpTy',
     'multiprocess',
-    'requests'
+    'requests',
+    'pymysql==0.9.0'
 ]
 
 # READ THE DOCS SERVERS
