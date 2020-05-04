@@ -40,7 +40,6 @@ if not os.path.exists(pathToOutputDir):
 
 settings["atel-directory"] = pathToOutputDir + "atel-directory"
 
-
 class test_download(unittest.TestCase):
 
     def test_get_latest_atel_number_function(self):

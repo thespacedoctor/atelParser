@@ -5,12 +5,10 @@
 
 :Author:
     David Young
-
-:Date Created:
-    August 29, 2018
 """
 from __future__ import print_function
-################# GLOBAL IMPORTS ####################
+from builtins import range
+from builtins import object
 import sys
 import os
 os.environ['TERM'] = 'vt100'
@@ -21,28 +19,30 @@ import random
 from time import sleep
 import codecs
 
-
-class download():
+class download(object):
     """
     *The worker class for the download module*
 
-    **Key Arguments:**
-        - ``log`` -- logger
-        - ``settings`` -- the settings dictionary
+    **Key Arguments**
 
-    **Usage:**
+    - ``log`` -- logger
+    - ``settings`` -- the settings dictionary
+    
 
-        To setup your logger, settings and database connections, please use the ``fundamentals`` package (`see tutorial here <http://fundamentals.readthedocs.io/en/latest/#tutorial>`_). 
+    **Usage**
 
-        To initiate a download object, use the following:
+    To setup your logger, settings and database connections, please use the ``fundamentals`` package (`see tutorial here <http://fundamentals.readthedocs.io/en/latest/#tutorial>`_). 
 
-        .. code-block:: python 
+    To initiate a download object, use the following:
 
-            from atelParser import download
-            atels = download(
-                log=log,
-                settings=settings
-            )  
+    ```python
+    from atelParser import download
+    atels = download(
+        log=log,
+        settings=settings
+    )  
+    ```
+    
     """
     # Initialisation
 
@@ -63,19 +63,22 @@ class download():
             self):
         """*get latest atel number by parsing the RSS feed for the ATel site*
 
-        **Return:**
-            - ``number`` -- the number of the latest ATel
+        **Return**
 
-        **Usage:**
+        - ``number`` -- the number of the latest ATel
+        
 
-            .. code-block:: python 
+        **Usage**
 
-                from atelParser import download
-                atels = download(
-                    log=log,
-                    settings=settings
-                )
-                latestNumber = atels.get_latest_atel_number()
+        ```python
+        from atelParser import download
+        atels = download(
+            log=log,
+            settings=settings
+        )
+        latestNumber = atels.get_latest_atel_number()
+        ```
+        
         """
         self.log.debug('starting the ``get_latest_atel_number`` method')
 
@@ -87,7 +90,7 @@ class download():
                 url="http://www.astronomerstelegram.org/?rss",
                 headers=headers,
             )
-            content = response.content
+            content = str(response.content)
             status_code = response.status_code
         except requests.exceptions.RequestException:
             print('HTTP Request failed')
@@ -110,19 +113,22 @@ class download():
             self):
         """*get list of atels still to download by determining which ATels have been downloaded and diffing this against the latest ATel number*
 
-        **Return:**
-            - ``atelNumbersToDownload`` -- a list of the ATel numbers that need downloaded
+        **Return**
 
-        **Usage:**
+        - ``atelNumbersToDownload`` -- a list of the ATel numbers that need downloaded
+        
 
-            .. code-block:: python 
+        **Usage**
 
-                from atelParser import download
-                atels = download(
-                    log=log,
-                    settings=settings
-                )
-                atelsToDownload = atels._get_list_of_atels_still_to_download() 
+        ```python
+        from atelParser import download
+        atels = download(
+            log=log,
+            settings=settings
+        )
+        atelsToDownload = atels._get_list_of_atels_still_to_download() 
+        ```
+        
         """
         self.log.debug(
             'starting the ``_get_list_of_atels_still_to_download`` method')
@@ -135,7 +141,7 @@ class download():
 
         latestNumber = self.get_latest_atel_number()
 
-        allAtels = range(1, latestNumber + 1, 1)
+        allAtels = list(range(1, latestNumber + 1, 1))
         atelNumbersToDownload = []
         atelNumbersToDownload[:] = [
             m for m in allAtels if m not in atelDownloaded]
@@ -149,31 +155,37 @@ class download():
             atelNumbers):
         """*download the HTML files of all the missing ATels*
 
-        **Key Arguments:**
-            - ``atelNumbers`` -- the list of ATel numbers to download
+        **Key Arguments**
 
-        **Return:**
-            - None
+        - ``atelNumbers`` -- the list of ATel numbers to download
+        
 
-        **Usage:**
+        **Return**
 
-            To download new and missing ATel to your ``atel-directory`` use this code:
+        - None
+        
 
-            .. code-block:: python 
+        **Usage**
 
-                from atelParser import download
-                atels = download(
-                    log=log,
-                    settings=settings
-                )
-                atelsToDownload = atels._get_list_of_atels_still_to_download()
-                atels.download_list_of_atels(atelsToDownload)
+        To download new and missing ATel to your ``atel-directory`` use this code:
+
+        ```python
+        from atelParser import download
+        atels = download(
+            log=log,
+            settings=settings
+        )
+        atelsToDownload = atels._get_list_of_atels_still_to_download()
+        atels.download_list_of_atels(atelsToDownload)
+        ```
+        
         """
         self.log.debug('starting the ``download_list_of_atels`` method')
 
         for atel in atelNumbers:
             wait = random.randint(1, self.maxsleep)
-            print("Waiting for a randomly selected %(wait)ss before downloading ATel #%(atel)s" % locals())
+            print(
+                "Waiting for a randomly selected %(wait)ss before downloading ATel #%(atel)s" % locals())
             sleep(wait)
             url = 'http://www.astronomerstelegram.org/?read=%(atel)s' % locals(
             )

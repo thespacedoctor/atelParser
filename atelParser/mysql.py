@@ -5,11 +5,10 @@
 
 :Author:
     David Young
-
-:Date Created:
-    August 30, 2018
 """
-################# GLOBAL IMPORTS ####################
+from builtins import str
+from builtins import range
+from builtins import object
 import sys
 import os
 os.environ['TERM'] = 'vt100'
@@ -21,29 +20,31 @@ from fundamentals.mysql import database, readquery, writequery, convert_dictiona
 import codecs
 from astrocalc.coords import unit_conversion
 
-
-class mysql():
+class mysql(object):
     """
     *The worker class for the mysql module*
 
-    **Key Arguments:**
-        - ``log`` -- logger
-        - ``settings`` -- the settings dictionary
-        - ``reParse`` -- re-parse all existing atels? Useful if new names have been added to the parse-list
+    **Key Arguments**
 
-    **Usage:**
+    - ``log`` -- logger
+    - ``settings`` -- the settings dictionary
+    - ``reParse`` -- re-parse all existing atels? Useful if new names have been added to the parse-list
+    
 
-        To setup your logger, settings and database connections, please use the ``fundamentals`` package (`see tutorial here <http://fundamentals.readthedocs.io/en/latest/#tutorial>`_). 
+    **Usage**
 
-        To initiate a mysql object, use the following:
+    To setup your logger, settings and database connections, please use the ``fundamentals`` package (`see tutorial here <http://fundamentals.readthedocs.io/en/latest/#tutorial>`_). 
 
-        .. code-block:: python 
+    To initiate a mysql object, use the following:
 
-            from atelParser import mysql
-            parser = mysql(
-                log=log,
-                settings=settings
-            ) 
+    ```python
+    from atelParser import mysql
+    parser = mysql(
+        log=log,
+        settings=settings
+    ) 
+    ```
+    
     """
     # Initialisation
 
@@ -73,19 +74,22 @@ class mysql():
         """*Parse ATels into a mysql db. Parser to add ATels into a mysql db - each ATel has 'element' data (top level - title, author ...) and 'item' data (object specific data - ra, dec, mag, name ...).
             The parser will add one row per 'item' (object) into the db table*
 
-        **Return:**
-            - None
+        **Return**
 
-        **Usage:**
+        - None
+        
 
-            .. code-block:: python 
+        **Usage**
 
-                from atelParser import mysql
-                parser = mysql(
-                    log=log,
-                    settings=settings
-                )
-                parser.atels_to_database()
+        ```python
+        from atelParser import mysql
+        parser = mysql(
+            log=log,
+            settings=settings
+        )
+        parser.atels_to_database()
+        ```
+        
         """
         self.log.debug('starting the ``atels_to_database`` method')
 
@@ -269,22 +273,25 @@ class mysql():
             self):
         """*Parse the content of the ATels in the database, appending the various components and values to the db. Also includes the ability convert the atels to markdown, highlighting matches of the parsing regexs.*
 
-        **Return:**
-            - None
+        **Return**
 
-        **Usage:**
+        - None
+        
 
-                - write a command-line tool for this method
-                - update package tutorial with command-line tool info if needed
+        **Usage**
 
-            .. code-block:: python 
+        - write a command-line tool for this method
+            - update package tutorial with command-line tool info if needed
 
-                from atelParser import mysql
-                parser = mysql(
-                    log=log,
-                    settings=settings
-                )
-                parser.parse_atels()
+        ```python
+        from atelParser import mysql
+        parser = mysql(
+            log=log,
+            settings=settings
+        )
+        parser.parse_atels()
+        ```
+        
         """
         self.log.debug('starting the ``parse_atels`` method')
 
@@ -461,7 +468,7 @@ class mysql():
             # convert bytes to unicode
             if isinstance(userText, ("".__class__, u"".__class__)):
                 try:
-                    userText = unicode(
+                    userText = str(
                         userText, encoding="utf-8", errors="replace")
                 except:
                     pass
@@ -1011,18 +1018,19 @@ class mysql():
             self):
         """*populate htm columns in the atel_coordinates table*
 
-        **Usage:**
+        **Usage**
 
-            To add the HTM columns (levels 10, 13 & 16) to the atel_coordinates database add this to your code:
+        To add the HTM columns (levels 10, 13 & 16) to the atel_coordinates database add this to your code:
 
-            .. code-block:: python 
-
-                from atelParser import mysql
-                parser = mysql(
-                    log=log,
-                    settings=settings
-                )
-                parser.populate_htm_columns()
+        ```python
+        from atelParser import mysql
+        parser = mysql(
+            log=log,
+            settings=settings
+        )
+        parser.populate_htm_columns()
+        ```
+        
         """
         self.log.debug('starting the ``populate_htm_columns`` method')
 
@@ -1044,10 +1052,14 @@ class mysql():
             self):
         """*create the database tables required to host the atel information*
 
-        **Key Arguments:**
-            # -
+        **Key Arguments**
 
-        **Usage:**
+        # -
+        
+
+        **Usage**
+
+        
 
         ```python
         usage code 
@@ -1161,23 +1173,26 @@ class mysql():
         self.log.debug('completed the ``_create_atel_database_tables`` method')
         return None
 
-
 def clean_supernova_name(log, snName):
     """
     *Clean a SN name. As a string, this function will attempt to clean up the name so that it is somewhat homogeneous with SN/transient from the same survey/atel system.*
 
-    **Key Arguments:**
-        - ``log`` -- logger
-        - ``snName`` -- sn name to be cleaned (string)
+    **Key Arguments**
 
-    **Return:**
-        - ``snName`` -- cleaned sn name (string)
+    - ``log`` -- logger
+    - ``snName`` -- sn name to be cleaned (string)
+    
+
+    **Return**
+
+    - ``snName`` -- cleaned sn name (string)
+    
     """
 
     # convert bytes to unicode
     if isinstance(snName, ("".__class__, u"".__class__)):
         try:
-            snName = unicode(
+            snName = str(
                 snName, encoding="utf-8", errors="replace")
         except:
             pass
@@ -1193,7 +1208,7 @@ def clean_supernova_name(log, snName):
     snName = snName.replace('MASTERShort', "MASvTER")
     snName = snName.replace('MASTEROT', "MASTER")
     reMaster = re.compile(r'MASTER([^J])')
-    snName = reMaster.sub('MASTERJ\g<1>', snName)
+    snName = reMaster.sub(r'MASTERJ\g<1>', snName)
     regex = re.compile(r'SN.LSQ', re.I)
     snName = regex.sub('LSQ', snName)
     regex = re.compile(r'supernova', re.I)
@@ -1204,7 +1219,6 @@ def clean_supernova_name(log, snName):
     snName = regex.sub('SDSS', snName)
 
     return snName
-
 
 # use the tab-trigger below for new method
 # xt-class-method

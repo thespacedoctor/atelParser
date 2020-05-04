@@ -15,7 +15,6 @@ Options:
     download              download new and remaining ATel to the atel-directory stated in settings file
     parse                 add the new ATel contents to database and parse for names and coordinates
 
-
     -h, --help            show this help message
     -v, --version         show version
     -s, --settings        the settings file
@@ -32,10 +31,8 @@ from docopt import docopt
 from fundamentals import tools, times
 from subprocess import Popen, PIPE, STDOUT
 
-
 def tab_complete(text, state):
     return (glob.glob(text + '*') + [None])[state]
-
 
 def main(arguments=None):
     """
@@ -169,7 +166,6 @@ def main(arguments=None):
              (endTime, runningTime, ))
 
     return
-
 
 if __name__ == '__main__':
     main()

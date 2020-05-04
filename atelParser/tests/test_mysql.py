@@ -40,7 +40,6 @@ if not os.path.exists(pathToOutputDir):
 
 settings["atel-directory"] = pathToOutputDir + "atel-directory"
 
-
 def drop_database_tables(
         dbConn,
         log):
@@ -61,7 +60,6 @@ def drop_database_tables(
     log.debug('completed the ``drop_database_tables`` function')
     return None
 drop_database_tables(dbConn, log)
-
 
 class test_mysql(unittest.TestCase):
 
