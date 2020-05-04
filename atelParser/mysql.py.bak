@@ -130,7 +130,7 @@ class mysql():
                 readFile = codecs.open(atel, encoding='utf-8', mode='r')
                 html = readFile.read()
                 readFile.close()
-            except IOError as e:
+            except IOError, e:
                 message = 'could not open the file %s' % (atel,)
                 self.log.critical(message)
                 raise IOError(message)
@@ -459,12 +459,9 @@ class mysql():
 
             self.log.info("""parsing atel: `%(atelNumber)s`""" % locals())
             # convert bytes to unicode
-            if isinstance(userText, ("".__class__, u"".__class__)):
-                try:
-                    userText = unicode(
-                        userText, encoding="utf-8", errors="replace")
-                except:
-                    pass
+            if isinstance(userText, str):
+                userText = unicode(
+                    userText, encoding="utf-8", errors="replace")
 
             # SETUP HEADERS FOR MD -- USED FOR DEBUGGING
             header = "\n# %s: %s" % (row["atelNumber"], row["title"],)
@@ -1175,7 +1172,7 @@ def clean_supernova_name(log, snName):
     """
 
     # convert bytes to unicode
-    if isinstance(snName, ("".__class__, u"".__class__)):
+    if isinstance(snName, str):
         try:
             snName = unicode(
                 snName, encoding="utf-8", errors="replace")

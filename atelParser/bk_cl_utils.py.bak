@@ -21,7 +21,6 @@ Options:
     -s, --settings        the settings file
     -r, --reparse         re-parse all ATel for names and coordinates
 """
-from __future__ import print_function
 ################# GLOBAL IMPORTS ####################
 import sys
 import os
@@ -61,14 +60,14 @@ def main(arguments=None):
 
     # unpack remaining cl arguments using `exec` to setup the variable names
     # automatically
-    for arg, val in arguments.items():
+    for arg, val in arguments.iteritems():
         if arg[0] == "-":
             varname = arg.replace("-", "") + "Flag"
         else:
             varname = arg.replace("<", "").replace(">", "")
         if varname == "import":
             varname = "iimport"
-        if isinstance(val, ("".__class__, u"".__class__)) :
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))
@@ -145,7 +144,7 @@ def main(arguments=None):
         from datetime import datetime, date, time
         now = datetime.now()
         now = now.strftime("%Y/%m/%d %H:%M:%Ss")
-        print("%(latestNumber)s ATels have been reported as of %(now)s" % locals())
+        print "%(latestNumber)s ATels have been reported as of %(now)s" % locals()
 
     if parse:
         from atelParser import mysql

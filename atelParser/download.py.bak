@@ -9,7 +9,6 @@
 :Date Created:
     August 29, 2018
 """
-from __future__ import print_function
 ################# GLOBAL IMPORTS ####################
 import sys
 import os
@@ -90,7 +89,7 @@ class download():
             content = response.content
             status_code = response.status_code
         except requests.exceptions.RequestException:
-            print('HTTP Request failed')
+            print 'HTTP Request failed'
             sys.exit(0)
 
         # PARSE ALL ATEL LINKS REPORTED
@@ -173,7 +172,7 @@ class download():
 
         for atel in atelNumbers:
             wait = random.randint(1, self.maxsleep)
-            print("Waiting for a randomly selected %(wait)ss before downloading ATel #%(atel)s" % locals())
+            print "Waiting for a randomly selected %(wait)ss before downloading ATel #%(atel)s" % locals()
             sleep(wait)
             url = 'http://www.astronomerstelegram.org/?read=%(atel)s' % locals(
             )
@@ -187,7 +186,7 @@ class download():
                                (pathToWriteFile,))
                 writeFile = codecs.open(
                     pathToWriteFile, encoding='utf-8', mode='w')
-            except IOError as e:
+            except IOError, e:
                 message = 'could not open the file %s' % (pathToWriteFile,)
                 self.log.critical(message)
                 raise IOError(message)

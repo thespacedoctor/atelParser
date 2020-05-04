@@ -41,69 +41,40 @@ if not os.path.exists(pathToOutputDir):
 settings["atel-directory"] = pathToOutputDir + "atel-directory"
 
 
-def drop_database_tables(
-        dbConn,
-        log):
-    log.debug('starting the ``drop_database_tables`` function')
+class test_download(unittest.TestCase):
 
-    from fundamentals.mysql import writequery
-    sqlQuery = """
-        drop table if exists atel_coordinates;
-        drop table if exists atel_names;
-        drop table if exists atel_fullcontent;
-        """ % locals()
-    writequery(
-        log=log,
-        sqlQuery=sqlQuery,
-        dbConn=dbConn
-    )
+    def test_get_latest_atel_number_function(self):
 
-    log.debug('completed the ``drop_database_tables`` function')
-    return None
-drop_database_tables(dbConn, log)
-
-
-class test_mysql(unittest.TestCase):
-
-    def test_01_atels_to_database_function(self):
-
-        from atelParser import mysql
-        parser = mysql(
+        from atelParser import download
+        atels = download(
             log=log,
             settings=settings
         )
-        parser.atels_to_database()
+        latestNumber = atels.get_latest_atel_number()
 
-    def test_02_parse_atels_function(self):
+    def test_get_list_of_atels_still_to_download_function(self):
 
-        from atelParser import mysql
-        parser = mysql(
+        from atelParser import download
+        atels = download(
             log=log,
             settings=settings
         )
-        parser.parse_atels()
+        atelsToDownload = atels._get_list_of_atels_still_to_download()
+        atels.maxsleep = 7
+        atels.download_list_of_atels(atelsToDownload[:1])
 
-    def test_03_update_htm_function(self):
+    def test_download_function_exception(self):
 
-        from atelParser import mysql
-        parser = mysql(
-            log=log,
-            settings=settings
-        )
-        parser.populate_htm_columns()
-
-    def test_04_mysql_function_exception(self):
-
-        from atelParser import mysql
+        from atelParser import download
         try:
-            this = mysql(
+            this = download(
                 log=log,
                 settings=settings,
                 fakeKey="break the code"
             )
             this.get()
             assert False
-        except Exception as e:
+        except Exception, e:
             assert True
             print(str(e))
 

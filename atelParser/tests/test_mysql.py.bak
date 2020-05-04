@@ -103,7 +103,7 @@ class test_mysql(unittest.TestCase):
             )
             this.get()
             assert False
-        except Exception as e:
+        except Exception, e:
             assert True
             print(str(e))
 

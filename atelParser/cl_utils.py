@@ -21,6 +21,7 @@ Options:
     -s, --settings        the settings file
     -r, --reparse         re-parse all ATel for names and coordinates
 """
+from __future__ import print_function
 import sys
 import os
 os.environ['TERM'] = 'vt100'
@@ -145,7 +146,7 @@ def main(arguments=None):
         from datetime import datetime, date, time
         now = datetime.now()
         now = now.strftime("%Y/%m/%d %H:%M:%Ss")
-        print "%(latestNumber)s ATels have been reported as of %(now)s" % locals()
+        print("%(latestNumber)s ATels have been reported as of %(now)s" % locals())
 
     if parse:
         from atelParser import mysql
