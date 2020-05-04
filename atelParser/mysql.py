@@ -89,6 +89,8 @@ class mysql():
         """
         self.log.debug('starting the ``atels_to_database`` method')
 
+        self._create_atel_database_tables()
+
         # LIST ALL PARSED ATEL NUMBERS IN DATABASE
         sqlQuery = u"""
             SELECT distinct atelNumber
@@ -1028,10 +1030,132 @@ class mysql():
             tableName="atel_coordinates",
             dbConn=self.dbConn,
             log=self.log,
-            primaryIdColumnName="primaryId"
+            primaryIdColumnName="primaryId",
+            dbSettings=self.dbSettings
         )
 
         self.log.debug('completed the ``populate_htm_columns`` method')
+        return None
+
+    def _create_atel_database_tables(
+            self):
+        """*create the database tables required to host the atel information*
+
+        **Key Arguments:**
+            # -
+
+        **Usage:**
+
+        ```python
+        usage code 
+        ```
+
+        ---
+
+        ```eval_rst
+        .. todo::
+
+            - add usage info
+            - create a sublime snippet for usage
+            - write a command-line tool for this method
+            - update package tutorial with command-line tool info if needed
+        ```
+        """
+        self.log.debug('starting the ``_create_atel_database_tables`` method')
+
+        # atel_coordinates TABLE
+        sqlQuery = """CREATE TABLE IF NOT EXISTS `atel_coordinates` (
+              `primaryId` bigint(20) NOT NULL AUTO_INCREMENT,
+              `atelNumber` int(11) NOT NULL,
+              `raDeg` double NOT NULL,
+              `decDeg` double NOT NULL,
+              `crossMatchDate` datetime DEFAULT NULL,
+              `singleClassification` varchar(45) DEFAULT NULL,
+              `supernovaTag` int(11) DEFAULT NULL,
+              `ingested` int(11) DEFAULT '0',
+              `atelName` varchar(45) NOT NULL,
+              `atelUrl` varchar(200) NOT NULL,
+              `htm16ID` bigint(20) DEFAULT NULL,
+              `summaryRow` tinyint(4) DEFAULT NULL,
+              `survey` varchar(45) NOT NULL,
+              `titleToComment` tinyint(4) NOT NULL DEFAULT '0',
+              `htm13ID` int(11) DEFAULT NULL,
+              `htm10ID` int(11) DEFAULT NULL,
+              `updated` tinyint(1) DEFAULT '0',
+              `dateLastModified` datetime DEFAULT CURRENT_TIMESTAMP,
+              `dateCreated` datetime DEFAULT CURRENT_TIMESTAMP,
+              PRIMARY KEY (`primaryId`),
+              UNIQUE KEY `atelnumber_ra_dec` (`atelNumber`,`raDeg`,`decDeg`),
+              KEY `ra_deg` (`raDeg`,`decDeg`),
+              KEY `atelNumber` (`atelNumber`),
+              KEY `idx_htm16ID` (`htm16ID`),
+              KEY `idx_htm10ID` (`htm13ID`),
+              KEY `idx_htm13ID` (`htm13ID`),
+              KEY `i_htm10ID` (`htm10ID`),
+              KEY `i_htm13ID` (`htm13ID`),
+              KEY `i_htm16ID` (`htm16ID`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;""" % locals()
+        writequery(
+            log=self.log,
+            sqlQuery=sqlQuery,
+            dbConn=self.dbConn
+        )
+
+        # atel_fullcontent TABLE
+        sqlQuery = """CREATE TABLE IF NOT EXISTS `atel_fullcontent` (
+              `primaryId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'An internal counter',
+              `atelNumber` int(11) DEFAULT NULL,
+              `authors` mediumtext,
+              `backRefList` varchar(2000) DEFAULT NULL,
+              `dateCreated` datetime DEFAULT NULL,
+              `dateLastModified` datetime DEFAULT NULL,
+              `dateLastRead` datetime DEFAULT NULL,
+              `email` varchar(450) DEFAULT NULL,
+              `refList` varchar(450) DEFAULT NULL,
+              `tags` varchar(450) DEFAULT NULL,
+              `title` varchar(450) DEFAULT NULL,
+              `userText` mediumtext,
+              `datePublished` datetime NOT NULL,
+              `atelType` varchar(500) DEFAULT NULL,
+              `dateParsed` datetime DEFAULT NULL COMMENT 'The date the ATel text was parsed for names and coordinates',
+              `updated` tinyint(4) DEFAULT '0',
+              PRIMARY KEY (`primaryId`),
+              UNIQUE KEY `atelnumber` (`atelNumber`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+            """ % locals()
+        writequery(
+            log=self.log,
+            sqlQuery=sqlQuery,
+            dbConn=self.dbConn
+        )
+
+        # atel_coordinates TABLE
+        sqlQuery = """CREATE TABLE IF NOT EXISTS `atel_names` (
+              `primaryId` bigint(20) NOT NULL AUTO_INCREMENT,
+              `atelNumber` int(11) NOT NULL,
+              `name` varchar(200) NOT NULL,
+              `crossMatchDate` datetime DEFAULT NULL,
+              `singleClassification` varchar(45) DEFAULT NULL,
+              `supernovaTag` int(11) DEFAULT NULL,
+              `ingested` int(11) DEFAULT '0',
+              `atelName` varchar(45) NOT NULL,
+              `atelUrl` varchar(200) NOT NULL,
+              `survey` varchar(45) NOT NULL,
+              `titleToComment` tinyint(4) NOT NULL DEFAULT '0',
+              `summaryRow` tinyint(4) DEFAULT NULL,
+              PRIMARY KEY (`primaryId`),
+              UNIQUE KEY `atelnumber_name` (`atelNumber`,`name`),
+              KEY `atelNumber` (`atelNumber`),
+              KEY `name` (`name`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+        """ % locals()
+        writequery(
+            log=self.log,
+            sqlQuery=sqlQuery,
+            dbConn=self.dbConn
+        )
+
+        self.log.debug('completed the ``_create_atel_database_tables`` method')
         return None
 
 

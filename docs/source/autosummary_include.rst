@@ -1,31 +1,23 @@
 
-Modules
--------
+**Modules**
 
 .. autosummary::
-   :toctree: _autosummary
    :nosignatures:
 
    atelParser.commonutils 
    atelParser.docstring_test
-   atelParser.utKit 
+   atelParser.utKit
 
-
-Classes
--------
+**Classes**
 
 .. autosummary::
-   :toctree: _autosummary
    :nosignatures:
 
    atelParser.utKit.utKit 
 
-
-Functions
----------
+**Functions**
 
 .. autosummary::
-   :toctree: _autosummary
    :nosignatures:
 
    atelParser.docstring_test.docsting_test 

@@ -1,42 +1,32 @@
+from __future__ import print_function
+from builtins import str
 import os
-import nose2
-import shutil
 import unittest
+import shutil
 import yaml
-from atelParser import download, cl_utils
 from atelParser.utKit import utKit
-
 from fundamentals import tools
+from os.path import expanduser
+home = expanduser("~")
+
+packageDirectory = utKit("").get_project_root()
+settingsFile = packageDirectory + "/test_settings.yaml"
 
 su = tools(
-    arguments={"settingsFile": None},
+    arguments={"settingsFile": settingsFile},
     docString=__doc__,
     logLevel="DEBUG",
     options_first=False,
-    projectName="atelParser",
+    projectName=None,
     defaultSettingsFile=False
 )
 arguments, settings, log, dbConn = su.setup()
 
-# # load settings
-# stream = file(
-#     "/Users/Dave/.config/atelParser/atelParser.yaml", 'r')
-# settings = yaml.load(stream)
-# stream.close()
-
-# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP PATHS TO COMMON DIRECTORIES FOR TEST DATA
 moduleDirectory = os.path.dirname(__file__)
-utKit = utKit(moduleDirectory)
-log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
-utKit.tearDownModule()
+pathToInputDir = moduleDirectory + "/input/"
+pathToOutputDir = moduleDirectory + "/output/"
 
-# load settings
-stream = file(
-    pathToInputDir + "/example_settings.yaml", 'r')
-settings = yaml.load(stream)
-stream.close()
-
-import shutil
 try:
     shutil.rmtree(pathToOutputDir)
 except:
@@ -48,7 +38,7 @@ shutil.copytree(pathToInputDir, pathToOutputDir)
 if not os.path.exists(pathToOutputDir):
     os.makedirs(pathToOutputDir)
 
-# xt-setup-unit-testing-files-and-folders
+settings["atel-directory"] = pathToOutputDir + "atel-directory"
 
 
 class test_download(unittest.TestCase):
@@ -70,7 +60,8 @@ class test_download(unittest.TestCase):
             settings=settings
         )
         atelsToDownload = atels._get_list_of_atels_still_to_download()
-        atels.download_list_of_atels(atelsToDownload)
+        atels.maxsleep = 7
+        atels.download_list_of_atels(atelsToDownload[:1])
 
     def test_download_function_exception(self):
 
@@ -85,7 +76,7 @@ class test_download(unittest.TestCase):
             assert False
         except Exception, e:
             assert True
-            print str(e)
+            print(str(e))
 
         # x-print-testpage-for-pessto-marshall-web-object
 

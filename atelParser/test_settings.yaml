@@ -1,13 +1,12 @@
 version: 1
 
-atel-directory: /Users/Dave/git_repos/atel-archive/html
+atel-directory: /tmp/atel-archive/html
 
 database settings:
-    user: pessto
-    password: p355t0
-    db: pessto_marshall_sandbox
+    db: unit_tests
     host: localhost
-    
+    user: utuser
+    password: utpass
 
 logging settings:
     formatters:
@@ -30,7 +29,7 @@ logging settings:
             class: logging.handlers.GroupWriteRotatingFileHandler
             level: WARNING
             formatter: file_style
-            filename: /Users/Dave/.config/atelParser/atelParser.log
+            filename: ~/.config/atelParser/atelParser.log
             mode: w+
             maxBytes: 102400
             backupCount: 1

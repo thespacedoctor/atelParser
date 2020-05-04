@@ -1,5 +1,5 @@
-commonutils
-====================================================
+atelParser.commonutils (*subpackage*)
+=====================================
 
 .. automodule:: atelParser.commonutils
     :members:
@@ -21,11 +21,11 @@ commonutils
         
         
         
-        
+            
+                ~getpackagepath
+           
         
     
-        
-        
         
         
         

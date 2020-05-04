@@ -54,6 +54,7 @@ class download():
         self.log = log
         log.debug("instansiating a new 'download' object")
         self.settings = settings
+        self.maxsleep = 180
 
         return None
 
@@ -170,7 +171,7 @@ class download():
         self.log.debug('starting the ``download_list_of_atels`` method')
 
         for atel in atelNumbers:
-            wait = random.randint(1, 180)
+            wait = random.randint(1, self.maxsleep)
             print "Waiting for a randomly selected %(wait)ss before downloading ATel #%(atel)s" % locals()
             sleep(wait)
             url = 'http://www.astronomerstelegram.org/?read=%(atel)s' % locals(

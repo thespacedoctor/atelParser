@@ -1,42 +1,32 @@
+from __future__ import print_function
+from builtins import str
 import os
-import nose2
-import shutil
 import unittest
+import shutil
 import yaml
-from atelParser import mysql, cl_utils
 from atelParser.utKit import utKit
-
 from fundamentals import tools
+from os.path import expanduser
+home = expanduser("~")
+
+packageDirectory = utKit("").get_project_root()
+settingsFile = packageDirectory + "/test_settings.yaml"
 
 su = tools(
-    arguments={"settingsFile": None},
+    arguments={"settingsFile": settingsFile},
     docString=__doc__,
     logLevel="DEBUG",
     options_first=False,
-    projectName="atelParser",
+    projectName=None,
     defaultSettingsFile=False
 )
 arguments, settings, log, dbConn = su.setup()
 
-# # load settings
-# stream = file(
-#     "/Users/Dave/.config/atelParser/atelParser.yaml", 'r')
-# settings = yaml.load(stream)
-# stream.close()
-
-# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP PATHS TO COMMON DIRECTORIES FOR TEST DATA
 moduleDirectory = os.path.dirname(__file__)
-utKit = utKit(moduleDirectory)
-log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
-utKit.tearDownModule()
+pathToInputDir = moduleDirectory + "/input/"
+pathToOutputDir = moduleDirectory + "/output/"
 
-# load settings
-stream = file(
-    pathToInputDir + "/example_settings.yaml", 'r')
-settings = yaml.load(stream)
-stream.close()
-
-import shutil
 try:
     shutil.rmtree(pathToOutputDir)
 except:
@@ -48,12 +38,34 @@ shutil.copytree(pathToInputDir, pathToOutputDir)
 if not os.path.exists(pathToOutputDir):
     os.makedirs(pathToOutputDir)
 
-# xt-setup-unit-testing-files-and-folders
+settings["atel-directory"] = pathToOutputDir + "atel-directory"
+
+
+def drop_database_tables(
+        dbConn,
+        log):
+    log.debug('starting the ``drop_database_tables`` function')
+
+    from fundamentals.mysql import writequery
+    sqlQuery = """
+        drop table if exists atel_coordinates;
+        drop table if exists atel_names;
+        drop table if exists atel_fullcontent;
+        """ % locals()
+    writequery(
+        log=log,
+        sqlQuery=sqlQuery,
+        dbConn=dbConn
+    )
+
+    log.debug('completed the ``drop_database_tables`` function')
+    return None
+drop_database_tables(dbConn, log)
 
 
 class test_mysql(unittest.TestCase):
 
-    def test_atels_to_database_function(self):
+    def test_01_atels_to_database_function(self):
 
         from atelParser import mysql
         parser = mysql(
@@ -62,7 +74,7 @@ class test_mysql(unittest.TestCase):
         )
         parser.atels_to_database()
 
-    def test_parse_atels_function(self):
+    def test_02_parse_atels_function(self):
 
         from atelParser import mysql
         parser = mysql(
@@ -71,7 +83,7 @@ class test_mysql(unittest.TestCase):
         )
         parser.parse_atels()
 
-    def test_update_htm_function(self):
+    def test_03_update_htm_function(self):
 
         from atelParser import mysql
         parser = mysql(
@@ -80,7 +92,7 @@ class test_mysql(unittest.TestCase):
         )
         parser.populate_htm_columns()
 
-    def test_mysql_function_exception(self):
+    def test_04_mysql_function_exception(self):
 
         from atelParser import mysql
         try:
@@ -93,7 +105,7 @@ class test_mysql(unittest.TestCase):
             assert False
         except Exception, e:
             assert True
-            print str(e)
+            print(str(e))
 
         # x-print-testpage-for-pessto-marshall-web-object
 
