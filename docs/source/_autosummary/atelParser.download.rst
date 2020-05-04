@@ -1,9 +1,9 @@
-utKit *(class)*
-================================
+download *(class)*
+=============================
 
-.. currentmodule:: atelParser.utKit
+.. currentmodule:: atelParser
 
-.. autoclass:: utKit
+.. autoclass:: download
    :members:
    :show-inheritance:
    :inherited-members:
@@ -19,19 +19,11 @@ utKit *(class)*
         
    
         
-            ~utKit.get_project_root
+            ~download.download_list_of_atels
        
    
         
-            ~utKit.refresh_database
-       
-   
-        
-            ~utKit.setupModule
-       
-   
-        
-            ~utKit.tearDownModule
+            ~download.get_latest_atel_number
        
    
    .. 
@@ -88,8 +80,8 @@ utKit *(class)*
    ..     
    .. 
    ..     
-   .. 
-   ..     
+   ..          ~download._get_list_of_atels_still_to_download
+   ..      
    .. 
    ..     
    .. 

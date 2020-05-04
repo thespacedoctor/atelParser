@@ -7,7 +7,6 @@ Modules
    :nosignatures:
 
    atelParser.commonutils 
-   atelParser.docstring_test
    atelParser.utKit 
 
 
@@ -18,14 +17,7 @@ Classes
    :toctree: _autosummary
    :nosignatures:
 
+   atelParser.download
+   atelParser.mysql
    atelParser.utKit.utKit 
 
-
-Functions
----------
-
-.. autosummary::
-   :toctree: _autosummary
-   :nosignatures:
-
-   atelParser.docstring_test.docsting_test 

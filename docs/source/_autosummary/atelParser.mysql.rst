@@ -1,9 +1,9 @@
-utKit *(class)*
-================================
+mysql *(class)*
+==========================
 
-.. currentmodule:: atelParser.utKit
+.. currentmodule:: atelParser
 
-.. autoclass:: utKit
+.. autoclass:: mysql
    :members:
    :show-inheritance:
    :inherited-members:
@@ -19,19 +19,15 @@ utKit *(class)*
         
    
         
-            ~utKit.get_project_root
+            ~mysql.atels_to_database
        
    
         
-            ~utKit.refresh_database
+            ~mysql.parse_atels
        
    
         
-            ~utKit.setupModule
-       
-   
-        
-            ~utKit.tearDownModule
+            ~mysql.populate_htm_columns
        
    
    .. 
@@ -88,6 +84,8 @@ utKit *(class)*
    ..     
    .. 
    ..     
+   ..          ~mysql._create_atel_database_tables
+   ..      
    .. 
    ..     
    .. 

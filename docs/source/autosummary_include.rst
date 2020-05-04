@@ -5,7 +5,6 @@
    :nosignatures:
 
    atelParser.commonutils 
-   atelParser.docstring_test
    atelParser.utKit
 
 **Classes**
@@ -13,11 +12,13 @@
 .. autosummary::
    :nosignatures:
 
-   atelParser.utKit.utKit 
+   atelParser.download
+   atelParser.mysql
+ 
 
 **Functions**
 
 .. autosummary::
    :nosignatures:
 
-   atelParser.docstring_test.docsting_test 
+    
