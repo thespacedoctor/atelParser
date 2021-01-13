@@ -5,3 +5,4 @@ from . import utKit
 from . import cl_utils
 from .download import download
 from .mysql import mysql
+# from .mysql import clean_supernova_name

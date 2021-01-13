@@ -13,12 +13,11 @@
    :nosignatures:
 
    atelParser.download
-   atelParser.mysql
- 
+   atelParser.mysql 
 
 **Functions**
 
 .. autosummary::
    :nosignatures:
 
-    
+   atelParser.mysql.clean_supernova_name 

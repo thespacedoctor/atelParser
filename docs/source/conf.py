@@ -221,8 +221,22 @@ def generateAutosummaryIndex():
                 # if thisMod not in allSubpackages and len(name) and name[0:2] != "__" and name[-5:] != "tests" and name != "cl_utils" and name != "utKit":
                 #     allModules.append(sp + "." + name)
 
+    moreModules = []
     for spm in allSubpackages + allModules:
         for name, obj in inspect.getmembers(__import__(spm, fromlist=[''])):
+            if name[:2] == "__":
+                continue
+            try:
+                moreModules.append(obj.__module__)
+            except:
+                pass
+
+    for spm in allSubpackages + allModules + moreModules:
+        for name, obj in inspect.getmembers(__import__(spm, globals(), locals(), fromlist=[''], level=0)):
+            if name[:2] == "__":
+                continue
+            if spm.split(".")[-1] == name:
+                continue
             if inspect.isclass(obj):
                 thisClass = spm + "." + name
                 if (thisClass == obj.__module__ or spm == obj.__module__) and len(name) and name[0:1] != "_":
@@ -230,6 +244,7 @@ def generateAutosummaryIndex():
             if inspect.isfunction(obj):
                 thisFunction = spm + "." + name
                 if (spm == obj.__module__ or obj.__module__ == thisFunction) and len(name) and name != "main" and name[0:1] != "_":
+
                     allFunctions.append(thisFunction)
             if inspect.ismethod(obj):
                 thisMethod = spm + "." + name
