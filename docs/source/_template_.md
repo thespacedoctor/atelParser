@@ -19,7 +19,7 @@ This is a template document giving an overview of the syntax that can be used th
 ```eval_rst
 .. todo::
 
-    - nice!
+    - Make sure todo list is working. ✓
 ```
 
 ## Code URL Resolver

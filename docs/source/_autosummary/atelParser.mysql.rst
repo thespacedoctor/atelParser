@@ -1,4 +1,4 @@
-mysql *(class)*
+﻿mysql *(class)*
 ==========================
 
 .. currentmodule:: atelParser

@@ -31,8 +31,10 @@ from docopt import docopt
 from fundamentals import tools, times
 from subprocess import Popen, PIPE, STDOUT
 
+
 def tab_complete(text, state):
     return (glob.glob(text + '*') + [None])[state]
+
 
 def main(arguments=None):
     """
@@ -130,7 +132,7 @@ def main(arguments=None):
             log=log,
             settings=settings
         )
-        atelsToDownload = atels._get_list_of_atels_still_to_download()
+        atelsToDownload = atels.get_list_of_atels_still_to_download()
         atels.download_list_of_atels(atelsToDownload)
 
     if count:

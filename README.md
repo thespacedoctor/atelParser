@@ -22,7 +22,9 @@ Documentation for atelParser is hosted by [Read the Docs](https://atelparser.rea
 
 ## Features
 
-* 
+* Report the latest ATel count
+* Download all ATel as raw HTML pages. After a first download, can be run on a regular basis to download only new/missing ATels.
+* Parse ATels to extract coordinates and transient source names to indexed MySQL database tables which can then be used in your own projects.
 
 
 

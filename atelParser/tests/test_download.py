@@ -40,6 +40,7 @@ if not os.path.exists(pathToOutputDir):
 
 settings["atel-directory"] = pathToOutputDir + "atel-directory"
 
+
 class test_download(unittest.TestCase):
 
     def test_get_latest_atel_number_function(self):
@@ -51,14 +52,14 @@ class test_download(unittest.TestCase):
         )
         latestNumber = atels.get_latest_atel_number()
 
-    def test_get_list_of_atels_still_to_download_function(self):
+    def testget_list_of_atels_still_to_download_function(self):
 
         from atelParser import download
         atels = download(
             log=log,
             settings=settings
         )
-        atelsToDownload = atels._get_list_of_atels_still_to_download()
+        atelsToDownload = atels.get_list_of_atels_still_to_download()
         atels.maxsleep = 7
         atels.download_list_of_atels(atelsToDownload[:1])
 

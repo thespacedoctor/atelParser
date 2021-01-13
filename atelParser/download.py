@@ -19,15 +19,15 @@ import random
 from time import sleep
 import codecs
 
+
 class download(object):
     """
-    *The worker class for the download module*
+    *Download ATels as Raw HTML files*
 
     **Key Arguments**
 
     - ``log`` -- logger
     - ``settings`` -- the settings dictionary
-    
 
     **Usage**
 
@@ -42,7 +42,7 @@ class download(object):
         settings=settings
     )  
     ```
-    
+
     """
     # Initialisation
 
@@ -66,7 +66,7 @@ class download(object):
         **Return**
 
         - ``number`` -- the number of the latest ATel
-        
+
 
         **Usage**
 
@@ -78,7 +78,7 @@ class download(object):
         )
         latestNumber = atels.get_latest_atel_number()
         ```
-        
+
         """
         self.log.debug('starting the ``get_latest_atel_number`` method')
 
@@ -109,14 +109,14 @@ class download(object):
         self.log.debug('completed the ``get_latest_atel_number`` method')
         return number
 
-    def _get_list_of_atels_still_to_download(
+    def get_list_of_atels_still_to_download(
             self):
         """*get list of atels still to download by determining which ATels have been downloaded and diffing this against the latest ATel number*
 
         **Return**
 
         - ``atelNumbersToDownload`` -- a list of the ATel numbers that need downloaded
-        
+
 
         **Usage**
 
@@ -126,12 +126,12 @@ class download(object):
             log=log,
             settings=settings
         )
-        atelsToDownload = atels._get_list_of_atels_still_to_download() 
+        atelsToDownload = atels.get_list_of_atels_still_to_download() 
         ```
-        
+
         """
         self.log.debug(
-            'starting the ``_get_list_of_atels_still_to_download`` method')
+            'starting the ``get_list_of_atels_still_to_download`` method')
 
         basePath = self.settings["atel-directory"]
 
@@ -147,7 +147,7 @@ class download(object):
             m for m in allAtels if m not in atelDownloaded]
 
         self.log.debug(
-            'completed the ``_get_list_of_atels_still_to_download`` method')
+            'completed the ``get_list_of_atels_still_to_download`` method')
         return atelNumbersToDownload
 
     def download_list_of_atels(
@@ -158,12 +158,12 @@ class download(object):
         **Key Arguments**
 
         - ``atelNumbers`` -- the list of ATel numbers to download
-        
+
 
         **Return**
 
         - None
-        
+
 
         **Usage**
 
@@ -175,10 +175,10 @@ class download(object):
             log=log,
             settings=settings
         )
-        atelsToDownload = atels._get_list_of_atels_still_to_download()
+        atelsToDownload = atels.get_list_of_atels_still_to_download()
         atels.download_list_of_atels(atelsToDownload)
         ```
-        
+
         """
         self.log.debug('starting the ``download_list_of_atels`` method')
 

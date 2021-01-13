@@ -20,16 +20,17 @@ from fundamentals.mysql import database, readquery, writequery, convert_dictiona
 import codecs
 from astrocalc.coords import unit_conversion
 
+
 class mysql(object):
     """
-    *The worker class for the mysql module*
+    *Import ATel into MySQL database and parse for names and coordinates*
 
     **Key Arguments**
 
     - ``log`` -- logger
     - ``settings`` -- the settings dictionary
     - ``reParse`` -- re-parse all existing atels? Useful if new names have been added to the parse-list
-    
+
 
     **Usage**
 
@@ -44,7 +45,7 @@ class mysql(object):
         settings=settings
     ) 
     ```
-    
+
     """
     # Initialisation
 
@@ -77,7 +78,7 @@ class mysql(object):
         **Return**
 
         - None
-        
+
 
         **Usage**
 
@@ -89,7 +90,7 @@ class mysql(object):
         )
         parser.atels_to_database()
         ```
-        
+
         """
         self.log.debug('starting the ``atels_to_database`` method')
 
@@ -276,7 +277,7 @@ class mysql(object):
         **Return**
 
         - None
-        
+
 
         **Usage**
 
@@ -291,7 +292,7 @@ class mysql(object):
         )
         parser.parse_atels()
         ```
-        
+
         """
         self.log.debug('starting the ``parse_atels`` method')
 
@@ -1030,7 +1031,7 @@ class mysql(object):
         )
         parser.populate_htm_columns()
         ```
-        
+
         """
         self.log.debug('starting the ``populate_htm_columns`` method')
 
@@ -1051,30 +1052,6 @@ class mysql(object):
     def _create_atel_database_tables(
             self):
         """*create the database tables required to host the atel information*
-
-        **Key Arguments**
-
-        # -
-        
-
-        **Usage**
-
-        
-
-        ```python
-        usage code 
-        ```
-
-        ---
-
-        ```eval_rst
-        .. todo::
-
-            - add usage info
-            - create a sublime snippet for usage
-            - write a command-line tool for this method
-            - update package tutorial with command-line tool info if needed
-        ```
         """
         self.log.debug('starting the ``_create_atel_database_tables`` method')
 
@@ -1173,6 +1150,7 @@ class mysql(object):
         self.log.debug('completed the ``_create_atel_database_tables`` method')
         return None
 
+
 def clean_supernova_name(log, snName):
     """
     *Clean a SN name. As a string, this function will attempt to clean up the name so that it is somewhat homogeneous with SN/transient from the same survey/atel system.*
@@ -1181,12 +1159,12 @@ def clean_supernova_name(log, snName):
 
     - ``log`` -- logger
     - ``snName`` -- sn name to be cleaned (string)
-    
+
 
     **Return**
 
     - ``snName`` -- cleaned sn name (string)
-    
+
     """
 
     # convert bytes to unicode

@@ -9,6 +9,9 @@
 
    install
    initialisation
+   latest_atel_count
+   downloading_atels
+   parsing_atels_to_a_database
    todolist
    changes_link
 ```

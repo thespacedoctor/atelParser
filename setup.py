@@ -57,6 +57,6 @@ setup(name="atelParser",
       test_suite='nose2.collector.collector',
       tests_require=['nose2', 'cov-core'],
       entry_points={
-          'console_scripts': ['atelParser=atelParser.cl_utils:main'],
+          'console_scripts': ['atel=atelParser.cl_utils:main'],
       },
       zip_safe=False)

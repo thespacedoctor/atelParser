@@ -1,4 +1,4 @@
-download *(class)*
+﻿download *(class)*
 =============================
 
 .. currentmodule:: atelParser
@@ -26,6 +26,10 @@ download *(class)*
             ~download.get_latest_atel_number
        
    
+        
+            ~download.get_list_of_atels_still_to_download
+       
+   
    .. 
    ..     
    .. 
@@ -80,8 +84,6 @@ download *(class)*
    ..     
    .. 
    ..     
-   ..          ~download._get_list_of_atels_still_to_download
-   ..      
    .. 
    ..     
    .. 
