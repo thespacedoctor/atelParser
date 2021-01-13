@@ -18,6 +18,14 @@ Classes
    :nosignatures:
 
    atelParser.download
-   atelParser.mysql
-   atelParser.utKit.utKit 
+   atelParser.mysql 
 
+
+Functions
+---------
+
+.. autosummary::
+   :toctree: _autosummary
+   :nosignatures:
+
+   atelParser.mysql.clean_supernova_name 
