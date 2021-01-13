@@ -1,7 +1,9 @@
 
 ## Release Notes
 
-<!-- **vx.x.x - xxdatexx** -->
+**v1.0.0 - January 13, 2021**
+
+* **ENHANCEMENT** full documentation
 
 **v0.4.0 - May 4, 2020**
 
