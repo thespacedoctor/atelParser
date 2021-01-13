@@ -31,7 +31,6 @@ class mysql(object):
     - ``settings`` -- the settings dictionary
     - ``reParse`` -- re-parse all existing atels? Useful if new names have been added to the parse-list
 
-
     **Usage**
 
     To setup your logger, settings and database connections, please use the ``fundamentals`` package (`see tutorial here <http://fundamentals.readthedocs.io/en/latest/#tutorial>`_). 
@@ -45,7 +44,6 @@ class mysql(object):
         settings=settings
     ) 
     ```
-
     """
     # Initialisation
 
@@ -72,13 +70,9 @@ class mysql(object):
 
     def atels_to_database(
             self):
-        """*Parse ATels into a mysql db. Parser to add ATels into a mysql db - each ATel has 'element' data (top level - title, author ...) and 'item' data (object specific data - ra, dec, mag, name ...).
-            The parser will add one row per 'item' (object) into the db table*
+        """*Parse ATels into a mysql db.* 
 
-        **Return**
-
-        - None
-
+        Parser to add ATels into a mysql db - each ATel has 'element' data (top level - title, author ...) and 'item' data (object specific data - ra, dec, mag, name ...). The parser will add one row per 'item' (object) into the db table
 
         **Usage**
 
@@ -90,7 +84,6 @@ class mysql(object):
         )
         parser.atels_to_database()
         ```
-
         """
         self.log.debug('starting the ``atels_to_database`` method')
 
@@ -272,17 +265,11 @@ class mysql(object):
 
     def parse_atels(
             self):
-        """*Parse the content of the ATels in the database, appending the various components and values to the db. Also includes the ability convert the atels to markdown, highlighting matches of the parsing regexs.*
+        """*Parse the content of the ATels in the database*
 
-        **Return**
-
-        - None
-
+        Appending the various components and values to the db. Also includes the ability convert the atels to markdown, highlighting matches of the parsing regexs.
 
         **Usage**
-
-        - write a command-line tool for this method
-            - update package tutorial with command-line tool info if needed
 
         ```python
         from atelParser import mysql
@@ -292,7 +279,6 @@ class mysql(object):
         )
         parser.parse_atels()
         ```
-
         """
         self.log.debug('starting the ``parse_atels`` method')
 
@@ -1153,18 +1139,18 @@ class mysql(object):
 
 def clean_supernova_name(log, snName):
     """
-    *Clean a SN name. As a string, this function will attempt to clean up the name so that it is somewhat homogeneous with SN/transient from the same survey/atel system.*
+    *Clean a SN name.* 
+
+    This function will attempt to clean up the name so that it is somewhat homogeneous with SN/transient from the same survey/atel system.
 
     **Key Arguments**
 
     - ``log`` -- logger
     - ``snName`` -- sn name to be cleaned (string)
 
-
     **Return**
 
     - ``snName`` -- cleaned sn name (string)
-
     """
 
     # convert bytes to unicode

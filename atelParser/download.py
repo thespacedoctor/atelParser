@@ -42,7 +42,6 @@ class download(object):
         settings=settings
     )  
     ```
-
     """
     # Initialisation
 
@@ -67,7 +66,6 @@ class download(object):
 
         - ``number`` -- the number of the latest ATel
 
-
         **Usage**
 
         ```python
@@ -78,7 +76,6 @@ class download(object):
         )
         latestNumber = atels.get_latest_atel_number()
         ```
-
         """
         self.log.debug('starting the ``get_latest_atel_number`` method')
 
@@ -116,7 +113,6 @@ class download(object):
         **Return**
 
         - ``atelNumbersToDownload`` -- a list of the ATel numbers that need downloaded
-
 
         **Usage**
 
@@ -158,12 +154,6 @@ class download(object):
         **Key Arguments**
 
         - ``atelNumbers`` -- the list of ATel numbers to download
-
-
-        **Return**
-
-        - None
-
 
         **Usage**
 
