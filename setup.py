@@ -17,7 +17,7 @@ install_requires = [
     'HMpTy',
     'multiprocess',
     'requests',
-    'pymysql==0.9.0',
+    'pymysql',
     'pandas',
     'numpy'
 ]
