@@ -1,6 +1,10 @@
 
 ## Release Notes
 
+**v1.0.2 - May 10, 2022**
+
+* **Fixed**: docs now building 
+
 **v1.0.1 - January 14, 2021**
 
 * **Fixed**: dependency clash with other packages for pymysql version
