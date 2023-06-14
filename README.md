@@ -35,12 +35,13 @@ Documentation for atelParser is hosted by [Read the Docs](https://atelparser.rea
 If you use `atelParser` in your work, please cite using the following BibTeX entry: 
 
 ```bibtex
-@software{Young_atelParser,
-author = {Young, David R.},
-doi = {10.5281/zenodo.8037458},
-license = {GPL-3.0-only},
-title = {{atelParser}},
-url = {https://github.com/thespacedoctor/atelParser}
+@software{
+    Young_atelParser,
+    author = {Young, David R.},
+    doi = {10.5281/zenodo.8037458},
+    license = {GPL-3.0-only},
+    title = {{atelParser}},
+    url = {https://github.com/thespacedoctor/atelParser}
 }
 ```
 
