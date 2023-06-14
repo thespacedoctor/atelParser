@@ -1,5 +1,8 @@
 # atelParser
 
+[![](https://zenodo.org/badge/146584890.svg)](https://zenodo.org/badge/latestdoi/146584890) 
+
+
 <!-- INFO BADGES -->  
 
 [![](https://img.shields.io/pypi/pyversions/atelParser)](https://pypi.org/project/atelParser/)  
@@ -27,4 +30,17 @@ Documentation for atelParser is hosted by [Read the Docs](https://atelparser.rea
 * Parse ATels to extract coordinates and transient source names to indexed MySQL database tables which can then be used in your own projects.
 
 
+## How to cite atelParser
+
+If you use `atelParser` in your work, please cite using the following BibTeX entry: 
+
+```bibtex
+@software{Young_atelParser,
+author = {Young, David R.},
+doi = {10.5281/zenodo.8037458},
+license = {GPL-3.0-only},
+title = {{atelParser}},
+url = {https://github.com/thespacedoctor/atelParser}
+}
+```
 
