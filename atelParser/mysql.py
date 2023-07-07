@@ -6,19 +6,17 @@
 :Author:
     David Young
 """
+import codecs
+from fundamentals.mysql import database, readquery, writequery, convert_dictionary_to_mysql_table
+from datetime import datetime
+import re
+from fundamentals import tools, times
 from builtins import str
 from builtins import range
 from builtins import object
 import sys
 import os
 os.environ['TERM'] = 'vt100'
-from fundamentals import tools, times
-import re
-import sys
-from datetime import datetime
-from fundamentals.mysql import database, readquery, writequery, convert_dictionary_to_mysql_table
-import codecs
-from astrocalc.coords import unit_conversion
 
 
 class mysql(object):
@@ -281,6 +279,8 @@ class mysql(object):
         ```
         """
         self.log.debug('starting the ``parse_atels`` method')
+
+        from astrocalc.coords import unit_conversion
 
         ################ > VARIABLE SETTINGS ######
         # METRICS TO FILTER ATELS
