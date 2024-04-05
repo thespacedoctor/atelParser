@@ -35,7 +35,7 @@ Documentation for atelParser is hosted by [Read the Docs](https://atelparser.rea
 If you use `atelParser` in your work, please cite using the following BibTeX entry: 
 
 ```bibtex
-@software{Young_atelParser_Scrape_and,
+@software{Young_atelParser,
     author = {Young, David R.},
     doi = {10.5281/zenodo.8037457},
     license = {GPL-3.0-only},
