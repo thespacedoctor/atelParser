@@ -1,6 +1,6 @@
 # atelParser
 
-[![](https://zenodo.org/badge/146584890.svg)](https://zenodo.org/badge/latestdoi/146584890) 
+[![](https://zenodo.org/badge/DOI/10.5281/zenodo.8037457.svg)](https://zenodo.org/doi/10.5281/zenodo.8037457) 
 
 
 <!-- INFO BADGES -->  
@@ -35,13 +35,12 @@ Documentation for atelParser is hosted by [Read the Docs](https://atelparser.rea
 If you use `atelParser` in your work, please cite using the following BibTeX entry: 
 
 ```bibtex
-@software{
-    Young_atelParser,
+@software{Young_atelParser,
     author = {Young, David R.},
-    doi = {10.5281/zenodo.8037458},
+    doi = {10.5281/zenodo.8037457},
     license = {GPL-3.0-only},
-    title = {{atelParser}},
-    url = {https://github.com/thespacedoctor/atelParser}
+    title = {{atelParser. Scrape and parse content of ATels posted on The Astronomer's Telegram website}},
+    url = {https://zenodo.org/doi/10.5281/zenodo.8037457}
 }
 ```
 
