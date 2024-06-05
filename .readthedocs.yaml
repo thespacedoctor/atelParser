@@ -9,13 +9,16 @@ sphinx:
 # BUILD FORMATS
 formats: all
 
+build:
+  os: "ubuntu-22.04"
+  tools:
+    python: "3.8"
 
 python:
-  version: 3.7
   install:
+    - requirements: docs/requirements.txt
     - method: setuptools
       path: .
-    - requirements: docs/requirements.txt
 
 submodules:
   include: all
